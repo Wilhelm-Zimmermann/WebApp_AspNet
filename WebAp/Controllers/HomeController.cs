@@ -20,11 +20,13 @@ namespace WebAp.Controllers
 
         public IActionResult Index()
         {
+            ViewData["Product"] = "My PRoducts";
             return View();
         }
 
         public IActionResult Privacy()
         {
+            ViewData["Description"] = "Your politicy privacy";
             return View();
         }
 
