@@ -9,7 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using WebAp.Data;
+using MySql.Data.MySqlClient;
 
 namespace WebAp
 {
@@ -27,8 +29,14 @@ namespace WebAp
         {
             services.AddControllersWithViews();
 
+            string dbConnectionString = Configuration.GetConnectionString("WebApContext");
+
             services.AddDbContext<WebApContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("WebApContext")));
+            options.UseMySql(dbConnectionString,ServerVersion.AutoDetect(dbConnectionString), builder =>
+            builder.MigrationsAssembly("WebAp")));
+
+            services.AddControllers();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
