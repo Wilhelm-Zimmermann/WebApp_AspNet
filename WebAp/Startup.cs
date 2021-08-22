@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using WebAp.Data;
+using WebAp.Services;
 using MySql.Data.MySqlClient;
 
 namespace WebAp
@@ -37,6 +38,7 @@ namespace WebAp
 
 
             services.AddScoped<SeedingService>();
+            services.AddScoped<SellerService>();
 
         }
 
