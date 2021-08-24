@@ -40,6 +40,10 @@ namespace WebAp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Seller seller)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(seller);
+            }
             await _sellerService.InsertAsync(seller);
             return RedirectToAction(nameof(Index));
         }
@@ -115,6 +119,12 @@ namespace WebAp.Controllers
             if (id != seller.Id)
             {
                 return BadRequest();
+            }
+            if (!ModelState.IsValid)
+            {
+                var departments = await _departmentService.FindAllAsync();
+                var viewModel = new SellerFormViewModel { Seller = seller, Departments = departments };
+                return View(viewModel);
             }
             try
             {
