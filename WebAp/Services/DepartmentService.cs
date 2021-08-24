@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using WebAp.Data;
 using WebAp.Models;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebAp.Services
 {
@@ -14,9 +16,9 @@ namespace WebAp.Services
             _context = context;
         }
 
-        public List<Department> FindAll()
+        public async Task<List<Department>> FindAllAsync()
         {
-            return _context.Department.OrderBy(x => x.Name).ToList();
+            return await _context.Department.OrderBy(x => x.Name).ToListAsync();
         }
     }
 }
