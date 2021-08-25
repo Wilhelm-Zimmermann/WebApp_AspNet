@@ -6,8 +6,7 @@ using WebAp.Models;
 using WebAp.Data;
 using WebAp.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace WebAp.Services
 {
