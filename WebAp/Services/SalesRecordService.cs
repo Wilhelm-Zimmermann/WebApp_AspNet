@@ -35,5 +35,12 @@ namespace WebAp.Services
                 .ToListAsync();
         }
 
+        public async Task<List<IGrouping<Department,SalesRecord>>> FindByDateGroupingAsync(DateTime? minDate, DateTime? maxDate)
+        {
+            var result = await FindByDateAsync(minDate, maxDate);
+
+            return result.GroupBy(x => x.Seller.Department).ToList();
+        }
+
     }
 }
